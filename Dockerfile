@@ -18,8 +18,9 @@ RUN --network=none \
 WORKDIR /home/certspotter/
 USER certspotter
 
-# Support changing UID/GID by the sysadmin
-RUN chmod 755 /home/certspotter/ /home/certspotter/.certspotter
+RUN mkdir -p /home/certspotter/.certspotter \
+    # Support changing UID/GID by the sysadmin
+    && chmod 755 /home/certspotter/ /home/certspotter/.certspotter
 
 RUN go install software.sslmate.com/src/certspotter/cmd/certspotter@latest
 
