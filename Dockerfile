@@ -24,4 +24,7 @@ RUN mkdir -p /home/certspotter/.certspotter \
 
 RUN go install software.sslmate.com/src/certspotter/cmd/certspotter@latest
 
+COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
+ENV LD_PRELOAD="/usr/local/lib/libhardened_malloc.so"
+
 ENTRYPOINT /home/certspotter/bin/certspotter
