@@ -22,9 +22,9 @@ RUN --network=none \
   addgroup -g ${GID} certspotter \
   && adduser -u ${UID} --ingroup certspotter --disabled-password --system certspotter
 
-WORKDIR /app
-ENV CERTSPOTTER_CONFIG_DIR=/app
-ENV CERTSPOTTER_STATE_DIR=/app
+WORKDIR /data
+ENV CERTSPOTTER_CONFIG_DIR=/data
+ENV CERTSPOTTER_STATE_DIR=/data
 
 USER certspotter
 
