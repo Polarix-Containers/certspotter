@@ -1,5 +1,6 @@
 ARG UID=200015
 ARG GID=200015
+ARG WORKDIR=/data
 
 FROM golang:alpine AS builder
 
@@ -14,6 +15,7 @@ LABEL maintainer="Thien Tran contact@tommytran.io"
 
 ARG UID
 ARG GID
+ARG WORKDIR
 
 RUN apk -U upgrade \
   && apk add libstdc++
@@ -22,9 +24,9 @@ RUN --network=none \
   addgroup -g ${GID} certspotter \
   && adduser -u ${UID} --ingroup certspotter --disabled-password --system certspotter
 
-WORKDIR /data
-ENV CERTSPOTTER_CONFIG_DIR=/data
-ENV CERTSPOTTER_STATE_DIR=/data
+WORKDIR ${WORKDIR}
+ENV CERTSPOTTER_CONFIG_DIR=${WORKDIR}
+ENV CERTSPOTTER_STATE_DIR=${WORKDIR}
 
 USER certspotter
 
