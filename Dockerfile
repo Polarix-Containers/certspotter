@@ -28,7 +28,7 @@ ENV CERTSPOTTER_STATE_DIR=/data
 
 USER certspotter
 
-COPY --from=builder --chown=root:root --chmod=755 /go/bin/certspotter /usr/bin/
+COPY --from=builder /go/bin/certspotter /usr/bin/
 COPY --from=ghcr.io/polarix-containers/hardened_malloc:latest /install /usr/local/lib/
 ENV LD_PRELOAD="/usr/local/lib/libhardened_malloc.so"
 
